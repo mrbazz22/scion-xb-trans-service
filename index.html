@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="xB Trans">
+<meta name="theme-color" content="#1a1a1a">
+<title>2010 Scion xB — Transmission Service &amp; SLT Solenoid</title>
+<style>
+:root{
+  --bg:#1a1a1a; --card:#242424; --card-alt:#2a2a2a; --text:#e8e8e8; --text-dim:#999;
+  --accent:#ff6b35; --warning:#ffaa00; --danger:#ff4444; --success:#4caf50;
+  --border:#333; --highlight:#3a3a3a; --info:#5dade2;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);
+  color:var(--text);line-height:1.6;padding-bottom:calc(3rem + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
+.header{background:linear-gradient(135deg,#2a2a2a 0%,#1a1a1a 100%);padding:1.25rem 1rem 0.9rem;
+  position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
+.header h1{font-size:1.25rem;font-weight:700;color:var(--accent)}
+.header .subtitle{font-size:0.8rem;color:var(--text-dim);margin-top:0.2rem}
+.nav-tabs{display:flex;gap:0.5rem;padding:0.7rem 1rem;background:var(--card);position:sticky;top:76px;
+  z-index:99;overflow-x:auto;-webkit-overflow-scrolling:touch;border-bottom:1px solid var(--border)}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{flex-shrink:0;padding:0.45rem 0.9rem;border-radius:2rem;font-size:0.82rem;font-weight:600;
+  background:var(--highlight);color:var(--text-dim);border:none;cursor:pointer;transition:all .2s;font-family:inherit}
+.nav-tab.active{background:var(--accent);color:#fff}
+.nav-tab:active{transform:scale(.95)}
+.section{display:none;padding:1rem;animation:fadeIn .25s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:.75rem;padding:1rem;margin-bottom:.75rem;border:1px solid var(--border)}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--accent);margin-bottom:.7rem}
+h3.sub{font-size:.95rem;font-weight:700;margin:.9rem 0 .4rem;color:var(--text)}
+p{font-size:.9rem;color:var(--text-dim);margin-bottom:.6rem}
+p strong,li strong{color:var(--text)}
+ul,ol{margin:.4rem 0 .6rem 1.15rem;font-size:.9rem;color:var(--text-dim)}
+li{margin-bottom:.35rem}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.spec-item{background:var(--highlight);padding:.7rem;border-radius:.5rem}
+.spec-label{font-size:.7rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem}
+.spec-value{font-size:.98rem;font-weight:600;color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin:.5rem 0}
+th{background:var(--highlight);color:var(--text-dim);text-align:left;padding:.55rem .5rem;font-size:.72rem;
+  text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+td{padding:.55rem .5rem;border-bottom:1px solid var(--border);color:var(--text-dim)}
+td:first-child{color:var(--text)}
+tr:last-child td{border-bottom:none}
+.step{display:flex;gap:.85rem;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.step:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.step-number{flex-shrink:0;width:2.1rem;height:2.1rem;background:var(--accent);color:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem}
+.step-content{flex:1;min-width:0}
+.step-title{font-weight:700;font-size:.95rem;margin-bottom:.35rem;color:var(--text)}
+.step-text{color:var(--text-dim);font-size:.87rem}
+.note{background:var(--highlight);padding:.7rem;border-radius:.5rem;font-size:.83rem;margin-top:.5rem;color:var(--text)}
+.warn{background:rgba(255,170,0,.1);border-left:3px solid var(--warning);padding:.7rem;
+  border-radius:0 .5rem .5rem 0;font-size:.83rem;color:var(--warning);margin-top:.5rem}
+.danger{background:rgba(255,68,68,.1);border-left:3px solid var(--danger);padding:.7rem;
+  border-radius:0 .5rem .5rem 0;font-size:.83rem;color:#ff8080;margin-top:.5rem}
+.ok{background:rgba(76,175,80,.1);border-left:3px solid var(--success);padding:.7rem;
+  border-radius:0 .5rem .5rem 0;font-size:.83rem;color:#81c784;margin-top:.5rem}
+.badge{display:inline-block;background:var(--accent);color:#fff;font-size:.68rem;font-weight:700;
+  padding:.15rem .5rem;border-radius:.75rem;vertical-align:middle;margin-left:.4rem}
+.badge.donor{background:var(--info);color:#0b2135}
+.badge.warnb{background:var(--warning);color:#2a1e00}
+img.diagram{width:100%;border-radius:.6rem;border:1px solid var(--border);background:#121212;display:block}
+.checklist-item{display:flex;align-items:flex-start;gap:.7rem;background:var(--card);border:1px solid var(--border);
+  border-radius:.6rem;padding:.75rem;margin-bottom:.5rem}
+.checklist-item input[type=checkbox]{width:1.35rem;height:1.35rem;margin-top:.1rem;flex-shrink:0;accent-color:var(--accent)}
+.checklist-item label{font-size:.88rem;color:var(--text-dim);flex:1}
+.checklist-item input:checked + label{text-decoration:line-through;opacity:.55}
+.done-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:.3rem}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Scion xB Trans Service</h1>
+  <div class="subtitle">2010 xB · 2AZ-FE · U241E · fluid + filter + SLT swap</div>
+</div>
+
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="showSection('overview',event)">Overview</button>
+  <button class="nav-tab" onclick="showSection('parts',event)">Parts</button>
+  <button class="nav-tab" onclick="showSection('checks',event)">Checks</button>
+  <button class="nav-tab" onclick="showSection('bulbtest',event)">Bulb Test</button>
+  <button class="nav-tab" onclick="showSection('teardown',event)">Teardown</button>
+  <button class="nav-tab" onclick="showSection('install',event)">Install</button>
+  <button class="nav-tab" onclick="showSection('refill',event)">Refill</button>
+  <button class="nav-tab" onclick="showSection('diagnose',event)">Diagnose</button>
+  <button class="nav-tab" onclick="showSection('checklist',event)">Checklist</button>
+</div>
+
+<!-- ============ OVERVIEW ============ -->
+<div class="section active" id="overview">
+  <div class="card">
+    <div class="card-title">The Job</div>
+    <p>Three things in one pan-off session: <strong>drain &amp; refill ATF</strong>, <strong>replace the ATF filter</strong>,
+    and <strong>swap the SLT solenoid</strong> from a donor U241E into the installed transaxle.</p>
+    <p>The filter is an internal, pan-off part on this transaxle — which is exactly why book time is 1.9 h for
+    fluid + filter vs. 1.1 h for fluid alone. Since you're already in the valve body, the solenoid swap is nearly free labor.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Doing it in one session</div>
+    <p>Three things in one pan-off session: <strong>drain &amp; refill ATF</strong>, <strong>replace the ATF filter</strong>,
+    and <strong>swap the SLT solenoid</strong>.</p>
+    <p>The filter is an internal, pan-off part on this transaxle — which is exactly why book time is 1.9 h for
+    fluid + filter vs. 1.1 h for fluid alone. Since you're already in the valve body, the solenoid swap is nearly free labor.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Order of operations</div>
+    <div class="spec-grid">
+      <div class="spec-item"><div class="spec-label">Step 1</div><div class="spec-value">Pre-checks</div></div>
+      <div class="spec-item"><div class="spec-label">Step 2</div><div class="spec-value">Drain + pan off</div></div>
+      <div class="spec-item"><div class="spec-label">Step 3</div><div class="spec-value">Filter + solenoid</div></div>
+      <div class="spec-item"><div class="spec-label">Step 4</div><div class="spec-value">Button up + refill</div></div>
+    </div>
+    <div class="ok"><strong>Step 5 is the one people skip:</strong> drive to operating temperature, check the fluid level HOT,
+    clear the codes, then reproduce the original fault condition under load. The job isn't done when the pan goes back on.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Donor solenoids</div>
+    <p>Solenoids can be replaced new or reused from a donor transaxle — provided the donor unit had no solenoid-related
+    faults. Test any incoming part before installing it (see <strong>Checks</strong> and <strong>Bulb Test</strong>).</p>
+    <div class="note">A solenoid from a transaxle that failed <em>mechanically</em> (for example, a failure to engage a gear,
+    with no codes stored) is a reasonable donor. A solenoid from a unit that failed <em>electrically</em> is not.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">The car's current state</div>
+    <table>
+      <tr><th>Item</th><th>Detail</th></tr>
+      <tr><td>Transaxle</td><td>U241E, 4-speed Super ECT</td></tr>
+      <tr><td>Active fault</td><td>Intermittent <strong>P2714</strong></td></tr>
+      <tr><td>When it trips</td><td>Hard acceleration</td></tr>
+      <tr><td>Workaround now</td><td>Clear code; returns under load</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============ PARTS ============ -->
+<div class="section" id="parts">
+  <div class="card">
+    <div class="card-title">Buy</div>
+    <table>
+      <tr><th>Part</th><th>Number</th><th>Notes</th></tr>
+      <tr><td>ATF filter</td><td><strong>35330-06010</strong></td><td>Internal, pan-off</td></tr>
+      <tr><td>ATF pan gasket</td><td>—</td><td>New required. Get it with the filter</td></tr>
+      <tr><td>ATF</td><td><strong>ATF WS only</strong></td><td>3.7 qt for drain &amp; refill — buy 5 qt</td></tr>
+      <tr><td>Oil filter</td><td><strong>90915-YZZF1</strong></td><td>For the oil change</td></tr>
+      <tr><td>Engine oil</td><td>5W-20 / 0W-20 ILSAC</td><td>4.5 qt with filter</td></tr>
+      <tr><td>Bulb (if needed)</td><td>1156 or 1157</td><td>You have these in the drawer</td></tr>
+    </table>
+    <div class="danger"><strong>ATF WS only.</strong> The FSM warns that any other fluid causes shift-quality deterioration,
+    lockup with vibration, and ultimately transmission damage. No Dexron/Mercon substitutes.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Donor parts</div>
+    <table>
+      <tr><th>Part</th><th>Example brand / #</th><th>Maps to</th></tr>
+      <tr><td>SLT EPC solenoid</td><td>ROSTRA 520416</td><td>SLT — the one you need</td></tr>
+      <tr><td>S1 + S2 shift</td><td>WELLS 2N1186 ×2</td><td>SL1 / SL2</td></tr>
+      <tr><td>SL lockup</td><td>ROSTRA 520377</td><td>Lockup</td></tr>
+    </table>
+    <div class="note">Part numbers shown are examples of aftermarket equivalents for this transaxle family.
+    Verify fitment by VIN before buying anything new.</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Tools</div>
+    <ul>
+      <li>Multimeter (resistance)</li>
+      <li>12 V battery or jump pack</li>
+      <li>1156/1157 bulb + two jumper leads</li>
+      <li>Drain pan that holds 4+ qt</li>
+      <li>1/4" and 3/8" drive, 10 mm socket</li>
+      <li>Torque wrench that reads <strong>6.6 Nm (58 in-lbf)</strong> accurately</li>
+      <li>Funnel + a way to measure fluid temp (IR gun or scan tool)</li>
+      <li>Shop towels — a lot of them</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ CHECKS ============ -->
+<div class="section" id="checks">
+  <div class="card">
+    <div class="card-title">Do this before you drop the pan</div>
+    <p>The SLT circuit is testable <strong>from outside the transaxle</strong> at the B20 transmission wire connector.
+    Car on the ground, no fluid spilled. If it reads bad, you've confirmed the solenoid before starting.</p>
+    <div class="warn"><strong>Read this carefully though.</strong> P2714 is a <em>performance</em> code — the ECM saw a
+    turbine-vs-output speed difference, meaning clutch slip, not a broken wire. So a <strong>good</strong> resistance
+    reading does <em>not</em> clear the diagnosis. A <strong>bad</strong> reading confirms the solenoid. It's a
+    one-way test — cheap to run, and 10 minutes to potentially redirect the whole job.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Resistance specs — all U241E solenoids</div>
+    <p>Measured at <strong>20 °C (68 °F)</strong>.</p>
+    <table>
+      <tr><th>Solenoid</th><th>Test points</th><th>Spec</th></tr>
+      <tr><td><strong>SL1</strong></td><td>terminal 1 – 2</td><td><strong>5.0 – 5.6 Ω</strong></td></tr>
+      <tr><td><strong>SL2</strong></td><td>terminal 1 – 2</td><td><strong>5.0 – 5.6 Ω</strong></td></tr>
+      <tr><td><strong>SLT</strong></td><td>terminal 1 – 2</td><td><strong>5.0 – 5.6 Ω</strong></td></tr>
+      <tr><td>DSL</td><td>connector – solenoid body</td><td>11 – 13 Ω</td></tr>
+      <tr><td>S4</td><td>connector – solenoid body</td><td>11 – 15 Ω</td></tr>
+    </table>
+    <div class="note"><strong>Mind the wiring difference.</strong> SL1/SL2/SLT are two-pin — you measure across
+    terminals 1 and 2. DSL and S4 have one pin and ground through the case, so you measure connector-to-body.
+    Probing a DSL/S4 style part terminal-to-terminal will read open and look "bad" when it's fine.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Reading the numbers</div>
+    <ul>
+      <li><strong>In spec</strong> — coil is electrically healthy. Code cause is hydraulic or mechanical.</li>
+      <li><strong>Open / OL</strong> — broken coil winding. Dead.</li>
+      <li><strong>Much higher</strong> — corroded or heat-damaged winding. Replace.</li>
+      <li><strong>Below ~5 Ω</strong> — partially shorted turns. Replace.</li>
+      <li><strong>Temperature matters</strong> — a cold solenoid reads low. Test at room temp for a fair comparison.</li>
+    </ul>
+    <div class="ok"><strong>Best practice:</strong> measure the incoming donor SLT and the installed one back to back,
+    same meter, same temperature. Relative comparison beats absolute numbers when you're deciding which to keep.</div>
+  </div>
+</div>
+
+<!-- ============ BULB TEST ============ -->
+<div class="section" id="bulbtest">
+  <div class="card">
+    <div class="card-title">The setup</div>
+    <img class="diagram" src="assets/bulbsetup.png" alt="21W bulb test wiring diagram">
+  </div>
+
+  <div class="card">
+    <div class="card-title">Build it in this order</div>
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <div class="step-title">Battery + → bulb</div>
+        <div class="step-text">One lead from the battery positive post to one bulb terminal. This is the <strong>red</strong> path in the diagram.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <div class="step-title">Bulb → terminal 2</div>
+        <div class="step-text">Other bulb terminal to <strong>terminal 2</strong> of the solenoid connector. Current now runs through the bulb into the coil.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <div class="step-title">Terminal 1 → battery −</div>
+        <div class="step-text">The <strong>blue</strong> return. Touch it to the negative post and you complete the circuit.</div>
+        <div class="note"><strong>Touch-and-release, don't hold.</strong> Each touch should give a crisp click. Release, touch again — you're checking repeatability, not endurance.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">What you're looking for</div>
+    <div class="ok"><strong>GOOD:</strong> the valve <strong>moves</strong> and makes an audible <strong>click</strong> each time you touch the lead.</div>
+    <table>
+      <tr><th>Symptom</th><th>Meaning</th></tr>
+      <tr><td>No click at all</td><td>Coil open or valve seized — replace</td></tr>
+      <tr><td>Clicks sometimes, dead other times</td><td>Intermittent — <strong>replace</strong>, this is your P2714</td></tr>
+      <tr><td>Weak click, sluggish movement</td><td>Weak coil or gummy valve — replace</td></tr>
+      <tr><td>Coil gets hot fast</td><td>Shorted turns — replace</td></tr>
+      <tr><td>Bulb barely glows</td><td>Circuit restricted — check leads and connections</td></tr>
+    </table>
+    <div class="note">The intermittent case is worth calling out. Your code is <em>intermittent under hard acceleration</em> —
+    that's exactly the failure a momentary bench test catches and a resistance reading misses.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Why the bulb — don't skip it</div>
+    <p>SLT is a <strong>linear PWM solenoid</strong> at roughly 5.3 Ω. Straight across a 12.6 V battery that's
+    <strong>~2.4 A and ~30 W</strong> into a coil the ECM only ever drives at duty cycle. Hold it on straight DC and
+    you can cook the winding you're trying to test.</p>
+    <p>The bulb is a <strong>current limiter</strong> — series resistance that drops the voltage so the valve still
+    strokes but the coil survives. That's the entire reason the FSM specifies it.</p>
+    <table>
+      <tr><th>Option</th><th>Notes</th></tr>
+      <tr><td><strong>1156 / 1157 bulb</strong></td><td>Best. 1156 ≈ 27 W; 1157 also ≈ 27 W on the bright filament</td></tr>
+      <tr><td>Bench supply w/ current limit</td><td>Cleanest if you have one — set ~0.5–1 A</td></tr>
+      <tr><td>~6 Ω / 25 W power resistor</td><td>Works, less friendly</td></tr>
+    </table>
+    <div class="warn">Use the <strong>single-filament</strong> contact on a 1157, or an 1156.
+    The dim filament is ~8 W and passes too much current.</div>
+    <div class="danger"><strong>Never jumper the solenoid straight to the battery.</strong> That's the one mistake
+    that turns a good donor part into a ruined one.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">FSM wording, verbatim</div>
+    <div class="note" style="font-size:.82rem">
+      "Connect the positive (+) battery lead with a 21 W bulb to terminal 2 and the negative (−) battery lead to
+      terminal 1 of the solenoid valve connector, and check the operation of the valve."<br><br>
+      NOTICE: "While using the battery during the inspection, do not bring the positive and negative tester probes
+      too close to each other as a short circuit may occur."<br><br>
+      OK: "The solenoid makes an operating sound."
+    </div>
+  </div>
+</div>
+
+<!-- ============ TEARDOWN ============ -->
+<div class="section" id="teardown">
+  <div class="card">
+    <div class="card-title">Before you start</div>
+    <ul>
+      <li>Car on ramps or stands, <strong>level</strong> — you'll need level for the refill later</li>
+      <li>Engine off, cool enough to work under</li>
+      <li>Drain pan positioned before you crack the plug</li>
+      <li>This will be messy. ATF comes out hot and spreads.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Getting to the valve body</div>
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <div class="step-title">Drain the ATF</div>
+        <div class="step-text">Remove the drain plug — <strong>49 Nm (36 ft-lbf)</strong> on reinstall. Expect about <strong>3.7 qt</strong>. Measure what comes out.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <div class="step-title">Drop the pan</div>
+        <div class="step-text"><strong>18 bolts.</strong> Loosen opposite corners progressively and keep a pan under the
+        last corner — the pan holds residual fluid.</div>
+        <div class="warn">Bolts are only <strong>7.8 Nm (69 in-lbf)</strong>. They're small and easy to strip. Hand-snug plus a light torque check.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <div class="step-title">Clean the pan and magnet</div>
+        <div class="step-text">Wipe the magnet. Read the debris: fine grey paste is normal wear. <strong>Chunks, brass-colored
+        flakes, or a lot of clutch material is not</strong> — that changes the diagnosis.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <div class="step-title">Remove the oil strainer / filter</div>
+        <div class="step-text">Bolts at <strong>11 Nm (8 ft-lbf)</strong>. Fit the new filter <strong>35330-06010</strong>.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <div class="step-title">Now you're looking at the valve body</div>
+    <div class="step-text">This is where the solenoids live: they're right there on the valve body, plug-and-play
+    once exposed. The only trick is identifying the correct one — there are five and they look alike.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Identify SLT before you touch anything</div>
+    <p>The solenoids are physically similar and the connectors are the giveaway. Use the wiring difference:</p>
+    <ul>
+      <li><strong>SL1, SL2, SLT</strong> — two-pin connectors. Measure 1↔2.</li>
+      <li><strong>DSL, S4</strong> — single pin, grounded through the case.</li>
+    </ul>
+    <div class="warn">If you have a loose donor solenoid on the bench, <strong>match it visually to the one on the
+    valve body</strong> before removing anything. Visual matching is more reliable than counting positions.</div>
+  </div>
+</div>
+
+<!-- ============ INSTALL ============ -->
+<div class="section" id="install">
+  <div class="card">
+    <div class="card-title">Swapping the solenoid</div>
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+          <div class="step-title">Test both parts first</div>
+          <div class="step-text">Resistance + bulb test on the incoming donor solenoid <strong>and</strong> on the installed solenoid.
+          Decide which is healthier before anything goes back in.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <div class="step-title">Remove the old SLT</div>
+        <div class="step-text">Unplug the connector, remove the retaining bolt, pull the solenoid straight out.
+        Watch for the O-ring and any lock plate.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <div class="step-title">Fit the donor</div>
+        <div class="step-text">Light coat of fresh ATF WS on the O-ring. Slide straight in — no twisting, no force.
+        If it doesn't seat easily, something is misaligned.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <div class="step-title">Torque the retainer</div>
+        <div class="step-text"><strong>6.6 Nm (67 kgf-cm, 58 in-lbf).</strong> That's barely snug — it's an inch-pound
+        value, not foot-pounds. This is the easiest fastener on the job to over-torque.</div>
+        <div class="danger">Do not confuse this with the <strong>11 Nm (8 ft-lbf)</strong> used on the other solenoids
+        and the oil strainer. SLT specifically is the lighter value.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <div class="step-title">Reconnect the pigtail</div>
+        <div class="step-text">Positive click, no strain on the wire. Check the harness for chafing while you're in there —
+        a damaged wire causes the same symptoms as a bad solenoid.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Button it up</div>
+    <div class="step">
+      <div class="step-number">6</div>
+      <div class="step-content">
+        <div class="step-title">Valve body bolts (if you loosened any)</div>
+        <div class="step-text"><strong>11 Nm (110 kgf-cm, 8 ft-lbf)</strong> — valve body to transaxle.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">7</div>
+      <div class="step-content">
+        <div class="step-title">New pan gasket + pan</div>
+        <div class="step-text">Clean mating surfaces — no old gasket residue, no RTV unless the FSM calls for it.
+        <strong>18 bolts at 7.8 Nm (69 in-lbf)</strong>, working opposite corners in stages.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">8</div>
+      <div class="step-content">
+        <div class="step-title">Drain plug</div>
+        <div class="step-text"><strong>49 Nm (36 ft-lbf)</strong>. New crush washer if you have one.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Torque quick reference</div>
+    <table>
+      <tr><th>Fastener</th><th>Nm</th><th>ft-lbf</th><th>in-lbf</th></tr>
+      <tr><td><strong>SLT to valve body</strong></td><td><strong>6.6</strong></td><td>—</td><td><strong>58</strong></td></tr>
+      <tr><td>SL1 / SL2 to valve body</td><td>11</td><td>8</td><td>—</td></tr>
+      <tr><td>DSL / S4 to valve body</td><td>11</td><td>8</td><td>—</td></tr>
+      <tr><td>Valve body to transaxle</td><td>11</td><td>8</td><td>—</td></tr>
+      <tr><td>Oil strainer to valve body</td><td>11</td><td>8</td><td>—</td></tr>
+      <tr><td>Oil pan to transaxle case</td><td>7.8</td><td>—</td><td>69</td></tr>
+      <tr><td>Transmission wire to case</td><td>5.4</td><td>—</td><td>48</td></tr>
+      <tr><td>ATF temp sensor to lock plate</td><td>6.6</td><td>—</td><td>58</td></tr>
+      <tr><td>Drain plug</td><td>49</td><td>36</td><td>—</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============ REFILL ============ -->
+<div class="section" id="refill">
+  <div class="card">
+    <div class="card-title">Fill and level</div>
+    <div class="spec-grid">
+      <div class="spec-item"><div class="spec-label">Drain &amp; refill</div><div class="spec-value">3.7 qt (3.5 L)</div></div>
+      <div class="spec-item"><div class="spec-label">Dry fill</div><div class="spec-value">8.6 qt (8.1 L)</div></div>
+      <div class="spec-item"><div class="spec-label">Fluid</div><div class="spec-value">ATF WS only</div></div>
+      <div class="spec-item"><div class="spec-label">Check temp</div><div class="spec-value">158 – 176 °F</div></div>
+    </div>
+    <div class="note">You drained a fixed amount — start by putting back what came out, then fine-tune with the level check.
+    Overfilling aerates the fluid and causes its own shift problems.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Level check — FSM procedure</div>
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <div class="step-title">Drive it to temperature</div>
+        <div class="step-text">Fluid must reach <strong>70–80 °C (158–176 °F)</strong>. This is a real drive, not an idle warm-up.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <div class="step-title">Level surface, parking brake</div>
+        <div class="step-text">Engine idling.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <div class="step-title">Cycle the shifter</div>
+        <div class="step-text">Brake pedal depressed, shift <strong>P → L through every position</strong>, then back to <strong>P</strong>.
+        This fills the circuits so the reading is honest.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <div class="step-title">Read the dipstick</div>
+        <div class="step-text">Pull, wipe clean, push fully back in, pull again. Level must be in the <strong>HOT</strong> range.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Don't skip the recheck</div>
+    <div class="warn">The level check requires a hot drive, so the job does <strong>not</strong> end when the pan goes back
+    on. Plan the sequence as: <strong>button up → drive to temp → check level → top off → check again</strong>.
+    Don't put the car back in service until the level is confirmed HOT.</div>
+  </div>
+</div>
+
+<!-- ============ DIAGNOSE ============ -->
+<div class="section" id="diagnose">
+  <div class="card">
+    <div class="card-title">Two codes, one solenoid</div>
+    <table>
+      <tr><th>Code</th><th>Type</th><th>Meaning</th></tr>
+      <tr><td><strong>P2714</strong></td><td>Performance</td><td>Clutch slip detected — turbine vs. output speed mismatch</td></tr>
+      <tr><td>P2716</td><td>Electrical</td><td>Open or short in the SLT circuit</td></tr>
+    </table>
+    <p>Both point at <strong>Shift Solenoid Valve SLT</strong>, the line-pressure (EPC) solenoid. Yours is P2714.</p>
+    <div class="note"><strong>What SLT actually does:</strong> it modulates line pressure against throttle angle so
+    shifts feel smooth. When SLT sticks on, line pressure drops and clutch engagement force falls off — which is why
+    the ECM sees slip and sets a performance code rather than a circuit code.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">FSM diagnostic path</div>
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <div class="step-title">Check for other DTCs first</div>
+        <div class="step-text">Anything besides P2714 — chase that first. Multiple codes change the story.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <div class="step-title">Inspect SLT</div>
+        <div class="step-text">Resistance + bulb test. Fails → replace. Passes → keep going.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <div class="step-title">Inspect the valve body</div>
+        <div class="step-text">Look for foreign material on the valves. Contamination → repair or replace the valve body.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <div class="step-title">Inspect the torque converter clutch</div>
+        <div class="step-text">If everything above passes, the FSM points to the transaxle assembly itself.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Expectations going in</div>
+    <ul>
+      <li><strong>~70%</strong> a clean fluid + filter service resolves it</li>
+      <li><strong>~30%</strong> the solenoid genuinely needs replacing</li>
+    </ul>
+    <p>You're doing both at once, which sidesteps the gamble — but it also means if the code returns, you'll want to
+    know which change did what. <strong>Note the fluid condition and debris in the pan</strong> when you're in there.
+    That tells you whether this was dirty fluid or a failing part.</p>
+    <div class="warn">If P2714 returns after all this, the remaining suspects are the valve body and the torque converter
+    clutch. That's no longer a pan-off driveway job — it's a conversation about the transaxle.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Shakedown</div>
+    <ul>
+      <li>Clear the code after the service</li>
+      <li>Drive normally at first — around-town, light throttle</li>
+      <li>Then <strong>reproduce the original condition: hard acceleration</strong>. That's the only test that matters,
+      since that's when it tripped before.</li>
+      <li>Re-scan after. Clean means you're done.</li>
+    </ul>
+    <div class="ok">An intermittent fault that only appears under load will not show up in a gentle test drive.
+    You have to load it to prove it's fixed.</div>
+  </div>
+</div>
+
+<!-- ============ CHECKLIST ============ -->
+<div class="section" id="checklist">
+  <div class="card">
+    <div class="card-title">Before the job</div>
+    <div class="checklist-item"><input type="checkbox" id="c1"><label for="c1">Order ATF filter 35330-06010 + pan gasket</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c2"><label for="c2">Buy 5 qt ATF WS <em>(WS only — no substitutes)</em></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c3"><label for="c3">Oil + filter 90915-YZZF1 for the oil change</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c4"><label for="c4">Locate 1156/1157 bulb + two jumper leads</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c5"><label for="c5">Retrieve the donor SLT solenoid and bench test it</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c6"><label for="c6">Confirm torque wrench reads inch-pounds accurately</label></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Diagnosis</div>
+    <div class="checklist-item"><input type="checkbox" id="c7"><label for="c7">Scan for any other DTCs besides P2714</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c8"><label for="c8">B20 pre-check — SLT circuit resistance, car on ground</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c9"><label for="c9">Bench test the incoming donor SLT (resistance + bulb)</label></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Teardown</div>
+    <div class="checklist-item"><input type="checkbox" id="c10"><label for="c10">Car level on stands, drain pan ready</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c11"><label for="c11">Drain ATF — measure what comes out</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c12"><label for="c12">Drop pan — 18 bolts</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c13"><label for="c13">Inspect pan magnet for debris <em>(note the condition)</em></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c14"><label for="c14">Remove old filter, fit new 35330-06010</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c15"><label for="c15">Bench test the installed SLT before removing it</label></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Install</div>
+    <div class="checklist-item"><input type="checkbox" id="c16"><label for="c16">Fit donor SLT — ATF on the O-ring, straight in</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c17"><label for="c17">SLT retainer at 6.6 Nm / 58 in-lbf <em>(NOT 11 Nm)</em></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c18"><label for="c18">Reconnect pigtail, inspect harness for chafe</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c19"><label for="c19">New gasket + pan — 18 bolts at 7.8 Nm</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c20"><label for="c20">Drain plug 49 Nm</label></div>  </div>
+
+  <div class="card">
+    <div class="card-title">Refill &amp; verify</div>
+    <div class="checklist-item"><input type="checkbox" id="c21"><label for="c21">Refill ATF WS — start with what drained</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c22"><label for="c22">Oil change — 4.5 qt, new filter</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c23"><label for="c23">Drive to 158–176 °F</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c24"><label for="c24">Level check — P→L→P, dipstick in HOT range</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c25"><label for="c25">Clear codes</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c26"><label for="c26">Around-town drive — normal, light throttle</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c27"><label for="c27"><strong>Hard-acceleration test under load</strong></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c28"><label for="c28">Re-scan — P2714 gone?</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c29"><label for="c29">Check for leaks under the car</label></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Recheck in a week</div>
+    <div class="checklist-item"><input type="checkbox" id="c30"><label for="c30">Fluid level + color after ~300 miles</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c31"><label for="c31">Pan bolts still snug, no weeping</label></div>
+    <div class="checklist-item"><input type="checkbox" id="c32"><label for="c32">No codes</label></div>
+  </div>
+</div>
+
+<script>
+function showSection(id, ev){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(ev && ev.target) ev.target.classList.add('active');
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.checklist-item input').forEach(cb=>{
+  cb.addEventListener('change',()=>localStorage.setItem('xbt_'+cb.id, cb.checked));
+  cb.checked = localStorage.getItem('xbt_'+cb.id) === 'true';
+});
+</script>
+</body>
+</html>
