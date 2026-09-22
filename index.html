@@ -288,11 +288,23 @@ img.diagram{width:100%;border-radius:.6rem;border:1px solid var(--border);backgr
     <table>
       <tr><th>Option</th><th>Notes</th></tr>
       <tr><td><strong>1156 / 1157 bulb</strong></td><td>Best. 1156 ≈ 27 W; 1157 also ≈ 27 W on the bright filament</td></tr>
+      <tr><td><strong>3156 / 3157 bulb</strong></td><td>Electrically identical to 1156/1157 (both ~27 W). Base differs: plastic wedge instead of bayonet</td></tr>
       <tr><td>Bench supply w/ current limit</td><td>Cleanest if you have one — set ~0.5–1 A</td></tr>
       <tr><td>~6 Ω / 25 W power resistor</td><td>Works, less friendly</td></tr>
     </table>
-    <div class="warn">Use the <strong>single-filament</strong> contact on a 1157, or an 1156.
-    The dim filament is ~8 W and passes too much current.</div>
+    <div class="warn">Use an <strong>1156</strong> (bayonet base) or a <strong>3156</strong> (wedge base), or on a 1157/3157 use the
+    <strong>bright</strong> filament contact.
+    A 1157's dim filament is only ~8 W — much higher resistance, so it limits current harder than the FSM's
+    21 W and the valve may barely stroke. It won't damage anything, it just gives a weak/inconclusive test.</div>
+    <div class="warn">Must be a real <strong>incandescent</strong> bulb. An LED "replacement" has driver circuitry
+    inside and will not behave as a current limiter.</div>
+    <div class="note" style="font-size:.82rem">
+      <strong>Power source:</strong> any clean 12 V DC source works — car battery, lawnmower/motorcycle battery,
+      a 12 V 7 Ah sealed battery, a 12 V jump pack, or a regulated bench supply. The bulb already limits current
+      to about 1 A, so the source's amp capability is irrelevant. What matters is that it reads ~12.4–12.6 V at
+      rest. <strong>Not</strong> a battery charger (unregulated, often 14 V+ and noisy), and not an 18 V/20 V tool
+      battery. Verify 12 V with the meter before you start — some older mower batteries are 6 V.
+    </div>
     <div class="danger"><strong>Never jumper the solenoid straight to the battery.</strong> That's the one mistake
     that turns a good donor part into a ruined one.</div>
   </div>
