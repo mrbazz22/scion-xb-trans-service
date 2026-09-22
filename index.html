@@ -324,6 +324,27 @@ img.diagram{width:100%;border-radius:.6rem;border:1px solid var(--border);backgr
       OK: "The solenoid makes an operating sound."
     </div>
   </div>
+  <div class="card">
+    <div class="card-title">Two-terminal vs one-terminal solenoids</div>
+    <p><strong>SL1 / SL2 / SLT</strong> have <strong>two</strong> pins — the coil sits between them. Test 1↔2,
+    expect <strong>5.0–5.6 Ω</strong>.</p>
+    <p><strong>DSL</strong> (lock-up / torque converter clutch) and <strong>S4</strong> have only
+    <strong>one</strong> pin — the coil grounds through the solenoid body. <strong>That single terminal is
+    correct, not a broken connector.</strong></p>
+    <table>
+      <tr><th>Solenoid</th><th>Test</th><th>Spec @ 20 °C</th></tr>
+      <tr><td>SL1 · SL2 · SLT</td><td>terminal 1 ↔ terminal 2</td><td>5.0 – 5.6 Ω</td></tr>
+      <tr><td><strong>DSL</strong> (lock-up)</td><td>terminal ↔ <strong>solenoid body</strong></td><td><strong>11 – 13 Ω</strong></td></tr>
+      <tr><td>S4</td><td>terminal ↔ <strong>solenoid body</strong></td><td>11 – 15 Ω</td></tr>
+    </table>
+    <p><strong>DSL and S4 need no bulb.</strong> The bulb exists only to drag the ~5 Ω solenoids down to about
+    1 A. A ~12 Ω coil already does that by itself — straight across 12.6 V it draws ~1.05 A, the same place the
+    bulb lands SLT. So connect battery <strong>+</strong> to the terminal and battery <strong>−</strong> to the
+    <strong>body</strong>, tap, and listen for the click.</p>
+    <div class="warn">The body must be <strong>bare metal</strong> — the case carries the ground return. Clip to
+    clean metal, not paint or plastic. A bad body contact reads as a false open circuit.</div>
+  </div>
+
 </div>
 
 <!-- ============ TEARDOWN ============ -->
