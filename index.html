@@ -214,6 +214,12 @@ img.diagram{width:100%;border-radius:.6rem;border:1px solid var(--border);backgr
     <div class="note"><strong>Mind the wiring difference.</strong> SL1/SL2/SLT are two-pin — you measure across
     terminals 1 and 2. DSL and S4 have one pin and ground through the case, so you measure connector-to-body.
     Probing a DSL/S4 style part terminal-to-terminal will read open and look "bad" when it's fine.</div>
+    <div class="warn">Measure the <strong>cold</strong> part — before any click test. Copper resistance rises with
+    heat, so clicking it first and measuring after can push a healthy coil above spec and look like a failure.
+    <strong>Meter first, battery second.</strong></div>
+    <div class="note"><strong>Record the actual numbers, not just "passed."</strong> Donor vs installed resistance
+    (say 5.4 Ω on the bench vs 8.5 Ω at B20) is what turns a parts swap into an actual diagnosis. "Good" on its
+    own tells you nothing later.</div>
   </div>
 
   <div class="card">
