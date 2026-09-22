@@ -223,6 +223,25 @@ img.diagram{width:100%;border-radius:.6rem;border:1px solid var(--border);backgr
   </div>
 
   <div class="card">
+    <div class="card-title">Meter setup — manual-range meters (Cen-Tech P30756)</div>
+    <p>The P30756 is a <strong>manual-range</strong> meter — 5 functions, 19 ranges, one selector switch.
+    Its resistance positions are <strong>200 Ω · 2000 Ω · 20 kΩ · 200 kΩ · 2000 kΩ</strong> (the last is 2 MΩ).</p>
+    <table>
+      <tr><th>Setting</th><th>What to do</th></tr>
+      <tr><td>Range</td><td><strong>200 Ω</strong> for every U241E solenoid (5–15 Ω). Gives 0.1 Ω resolution.</td></tr>
+      <tr><td>Leads</td><td>Red → <strong>VΩmA</strong> socket · Black → <strong>COM</strong></td></tr>
+      <tr><td>Part state</td><td>Unplugged, unpowered, isolated. Never measure ohms on a live circuit.</td></tr>
+      <tr><td>Zero the leads</td><td>Touch the two probes together and note the reading (usually <strong>0.2–0.5 Ω</strong>).
+        <strong>Subtract it from every measurement.</strong> On a 5 Ω solenoid that offset is ~10%.</td></tr>
+    </table>
+    <div class="warn"><strong>Over-range shows as a lone "1" or "OL"</strong> — that means OPEN CIRCUIT, not "1 ohm."
+    On a 3.5-digit display a single lit 1 with nothing after it is the out-of-range flag. Easy to misread as a good number.</div>
+    <div class="warn"><strong>Weak 9 V battery = wrong numbers.</strong> These meters read garbage as the battery sags.
+    If readings drift, flicker, or the display dims — replace the 9 V before you trust anything.</div>
+    <p class="note">Skip the diode-test position and the transistor (hFE) socket. Neither is used on this job.</p>
+  </div>
+
+  <div class="card">
     <div class="card-title">Reading the numbers</div>
     <ul>
       <li><strong>In spec</strong> — coil is electrically healthy. Code cause is hydraulic or mechanical.</li>
