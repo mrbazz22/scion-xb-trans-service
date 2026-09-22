@@ -234,6 +234,17 @@ img.diagram{width:100%;border-radius:.6rem;border:1px solid var(--border);backgr
       <tr><td>Zero the leads</td><td>Touch the two probes together and note the reading (usually <strong>0.2–0.5 Ω</strong>).
         <strong>Subtract it from every measurement.</strong> On a 5 Ω solenoid that offset is ~10%.</td></tr>
     </table>
+    <div class="danger"><strong>If the lead offset is above ~1 Ω, stop and fix the meter before measuring anything.</strong>
+    A healthy pair of leads reads 0.2–0.5 Ω. A high offset is not a number you can subtract out, because it is not
+    stable — it creeps as the leads flex and the contact shifts, so it is uncertainty riding on a spec window only
+    <strong>0.6 Ω wide</strong> (5.0–5.6). At 4 Ω of lead resistance the measurement error is several times larger
+    than the thing being measured. Nothing downstream is trustworthy until this is corrected.<br>
+    Fix in order: <strong>(1)</strong> scour the probe tips to bright metal (emery, fine sandpaper, Scotch-Brite) —
+    oxidized tips are the usual cause · <strong>(2)</strong> inspect the <em>VΩmA</em> and <em>COM</em> jacks for
+    corrosion or debris · <strong>(3)</strong> fit a fresh 9 V battery · <strong>(4)</strong> if it still reads high,
+    replace the leads.<br>
+    <strong>Never adjust a reading to fit the spec.</strong> Subtract the lead offset and nothing else. Resistance is
+    what the winding is — arithmetic cannot make an out-of-spec coil good.</div>
     <div class="warn"><strong>Over-range shows as a lone "1" or "OL"</strong> — that means OPEN CIRCUIT, not "1 ohm."
     On a 3.5-digit display a single lit 1 with nothing after it is the out-of-range flag. Easy to misread as a good number.</div>
     <div class="warn"><strong>Weak 9 V battery = wrong numbers.</strong> These meters read garbage as the battery sags.
