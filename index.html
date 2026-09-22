@@ -250,6 +250,14 @@ img.diagram{width:100%;border-radius:.6rem;border:1px solid var(--border);backgr
     <div class="warn"><strong>Weak 9 V battery = wrong numbers.</strong> These meters read garbage as the battery sags.
     If readings drift, flicker, or the display dims — replace the 9 V before you trust anything.</div>
     <p class="note">Skip the diode-test position and the transistor (hFE) socket. Neither is used on this job.</p>
+    <div class="note"><strong>Workaround when the lead offset is untrustworthy: compare two solenoids.</strong>
+    A constant lead offset <em>cancels</em> in a difference, so measuring a wide-spec part alongside a tight-spec part
+    recovers the answer. DSL is <strong>11–13 Ω</strong> (2 Ω window, forgiving) and SLT is <strong>5.0–5.6 Ω</strong>
+    (0.6 Ω window, unforgiving) — the true difference between them is <strong>~6.7 Ω</strong>.<br>
+    So if the SLT reads <em>7.4 raw</em>, a good DSL must read about <strong>14.1 raw</strong>. Take both back-to-back
+    without disturbing the probe tips. <strong>DSL ≈ 14 → the SLTs are really ~5.3 Ω and both are good.</strong>
+    DSL ≈ 11 (difference only 3.6) → real mismatch, investigate. This sidesteps the offset entirely — but it still
+    requires the meter to be <em>stable</em>, just not perfectly zeroed.</div>
   </div>
 
   <div class="card">
