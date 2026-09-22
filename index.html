@@ -450,11 +450,17 @@ img.diagram{width:100%;border-radius:.6rem;border:1px solid var(--border);backgr
     <div class="card-title">Identify SLT before you touch anything</div>
     <p>The solenoids are physically similar and the connectors are the giveaway. Use the wiring difference:</p>
     <ul>
-      <li><strong>SL1, SL2, SLT</strong> — two-pin connectors. Measure 1↔2.</li>
-      <li><strong>DSL, S4</strong> — single pin, grounded through the case.</li>
+      <li><strong>SL1, SL2, SLT</strong> — <strong>two pins.</strong> Measure terminal 1 ↔ terminal 2. Spec <strong>5.0–5.6 Ω</strong>.</li>
+      <li><strong>DSL, S4</strong> — <strong>one pin</strong>, grounded through the case. Measure terminal ↔ body.
+        Spec <strong>11–13 Ω</strong> (DSL) / <strong>11–15 Ω</strong> (S4).</li>
     </ul>
-    <div class="warn">If you have a loose donor solenoid on the bench, <strong>match it visually to the one on the
-    valve body</strong> before removing anything. Visual matching is more reliable than counting positions.</div>
+    <div class="warn"><strong>Loose part on the bench? Count the pins — that is the reliable discriminator.</strong>
+    Visual matching against the valve body only works if the trans is still assembled; with a stripped donor
+    transaxle it is not available. Pin count settles it in one look.
+    <br><br>Worth knowing: the U241E has <strong>five</strong> solenoids but only <strong>one</strong> SLT — so if you
+    think you have two SLTs in hand, one of them is almost certainly SL1, SL2, or S4. A 7 Ω reading means very
+    different things depending on which: out-of-spec <em>high</em> for an SLT (5.0–5.6), out-of-spec <em>low</em>
+    for an S4 (11–15).</div>
   </div>
 </div>
 
