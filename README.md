@@ -20,6 +20,22 @@ offline use in the garage.
 | Diagnose | P2714 vs P2716, FSM diagnostic path, expectations |
 | Checklist | 32-item checklist with saved state |
 
+## Field notes
+
+Field notes from the actual job are kept in `notes/`:
+
+| File | What's in it |
+|---|---|
+| [`notes/jdm-solenoid-replacement.md`](notes/jdm-solenoid-replacement.md) | **JDM vs US-market solenoid differences**, measured resistance values, OE part numbers (SL1/SL2/SLT/EPC), what to measure before ordering, transaxle ID location, and the research dead-ends so they aren't repeated |
+
+**Headline finding:** the installed JDM U241E and the US-market U241E **do not share a solenoid set** —
+a US-market donor solenoid will not fit the JDM valve body. Verify fitment by measuring the part in
+hand before ordering.
+
+Also documented there: a **double O-ring on the oil strainer** (stacked by a previous repair) is a
+plausible standalone root cause for **P2714** — stacked O-rings leak air on the suction side, aerated
+ATF is compressible, line pressure drops, clutches slip, and P2714 is the clutch-slip monitor.
+
 ## Key specs
 
 **Torque**
